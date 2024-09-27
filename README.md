@@ -1,7 +1,7 @@
 # CDC-datathon
 CDC Datathon entry - Health Sciences Category
 
-Environment Setup
+##Environment Setup
 ```
 cd Desktop
 mkdir -p CDC_datathon
