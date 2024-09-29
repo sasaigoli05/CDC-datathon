@@ -33,13 +33,15 @@
         }
         .tabcontent {
             display: none;
-            padding: 6px 12px;
+            padding: 20px;
             border: 1px solid #ccc;
             border-top: none;
         }
-        iframe {
+        /* Specific map height settings */
+        .tabcontent iframe {
             width: 100%;
             height: 600px;
+            border: none;
         }
     </style>
 </head>
@@ -47,27 +49,31 @@
 
 <h2>FlySight</h2>
 
+<!-- Tab buttons -->
 <div class="tab">
-  <button class="tablinks" onclick="openMap(event, 'Main Page')">Main page</button>
-  <button class="tablinks" onclick="openMap(event, 'Heat Map')">Heat Map</button>
-  <button class="tablinks" onclick="openMap(event, 'Alaska Airlines')">Alaska Airlines</button>
-  <button class="tablinks" onclick="openMap(event, 'Delta')">Delta</button>
-  <button class="tablinks" onclick="openMap(event, 'Frontier')">Frontier</button>
-  <button class="tablinks" onclick="openMap(event, 'JetBlue')">JetBlue</button>
-  <button class="tablinks" onclick="openMap(event, 'Southwest')">Southwest</button>
-  <button class="tablinks" onclick="openMap(event, 'Spirit')">Spirit</button>
-  <button class="tablinks" onclick="openMap(event, 'United')">United</button>
+  <button class="tablinks" onclick="openTab(event, 'MainPage')">Main Page</button>
+  <button class="tablinks" onclick="openTab(event, 'HeatMap')">Heat Map</button>
+  <button class="tablinks" onclick="openTab(event, 'American')">American Airlines</button>
+  <button class="tablinks" onclick="openTab(event, 'Delta')">Delta</button>
+  <button class="tablinks" onclick="openTab(event, 'Frontier')">Frontier</button>
+  <button class="tablinks" onclick="openTab(event, 'JetBlue')">JetBlue</button>
+  <button class="tablinks" onclick="openTab(event, 'Southwest')">Southwest</button>
+  <button class="tablinks" onclick="openTab(event, 'Spirit')">Spirit</button>
+  <button class="tablinks" onclick="openTab(event, 'United')">United</button>
+  <button class="tablinks" onclick="openTab(event, 'Profits')">Profits</button>
+  <button class="tablinks" onclick="openTab(event, 'Revenue')">Revenue by Quarter</button>
 </div>
 
-<div id="Main Page" class="tabcontent">
+<!-- Tab content -->
+<div id="MainPage" class="tabcontent">
   <iframe src="us_airports_map_with_search_and_hotels.html"></iframe>
 </div>
 
-<div id="Heat Map" class="tabcontent">
+<div id="HeatMap" class="tabcontent">
   <iframe src="us_airports_heatmap_revenue_with_slider.html"></iframe>
 </div>
 
-<div id="Alaska Airlines" class="tabcontent">
+<div id="American" class="tabcontent">
   <iframe src="aa_map.html"></iframe>
 </div>
 
@@ -95,8 +101,27 @@
   <iframe src="ua_map.html"></iframe>
 </div>
 
+<!-- Profits Visualization tab -->
+<div id="Profits" class="tabcontent">
+  <div class="visualization-content">
+      <h3>Profits</h3>
+      <p>Varied visualizations</p>
+      
+      <!-- Visualization 1 -->
+      <img src="profitsss.png" alt="Visualization 1" style="max-width: 100%; height: auto;">
+      <p>Analysis of profits from Bloomberg Projections</p>
+      
+      <!-- Add more visualizations as needed -->
+  </div>
+</div>
+
+<!-- Revenue by Quarter tab -->
+<div id="Revenue" class="tabcontent">
+  <iframe src="revenue_by_quarter.html"></iframe>
+</div>
+
 <script>
-function openMap(evt, mapName) {
+function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -106,7 +131,7 @@ function openMap(evt, mapName) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(mapName).style.display = "block";
+    document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
 

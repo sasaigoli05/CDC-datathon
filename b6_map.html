@@ -1,5 +1,208 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+        <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+        <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+        <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+        
+        <!-- CSS for image containers and buttons -->
+        <style>
+            /* General image container styling */
+            .image-container {
+                position: absolute;
+                background-color: rgba(255, 255, 255, 0.9);
+                border: 1px solid #ccc;
+                padding: 10px;
+                display: none; /* Hidden by default */
+                z-index: 1000; /* Ensure it's on top of the map */
+                max-width: 500px;
+            }
+    
+            /* Close button styling for each image */
+            .close-btn {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                cursor: pointer;
+                background-color: red;
+                color: white;
+                border: none;
+                padding: 5px;
+                font-size: 12px;
+            }
+    
+            /* Button to toggle the images */
+            #show-images-btn {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                background-color: blue;
+                color: white;
+                padding: 10px;
+                cursor: pointer;
+                z-index: 1000; /* Ensure the button stays above the map */
+            }
+    
+            /* Adjust positions of the images */
+            #image-container-1 {
+                top: 10px;
+                right: 20px;
+            }
+    
+            #image-container-2 {
+                bottom: 10px;
+                right: 20px;
+            }
+    
+            #image-container-3 {
+                bottom: 20px;
+                left: 20px; /* Move to the left side of the screen */
+            }
+        </style>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+
+    <style>
+        html, body {width: 100%;height: 100%;margin: 0;padding: 0;}
+        #map {position:absolute;top:0;bottom:80px;right:0;left:0;} /* Adjust bottom to make space for text */
+        #info-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px; /* Adjust the height */
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+            padding: 10px;
+            z-index: 999; /* Ensure it stays above the map */
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+</head>
+
+<body>
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Info Container for Top 5 and Bottom 5 Text -->
+    <div id="info-container">
+        <div id="top-5-container">
+            <strong>Top 5 Most Revenue/day States:</strong>
+            <ul id="top-5-list"></ul>
+        </div>
+        <div id="bottom-5-container" style="margin-top:10px;">
+            <strong>Bottom 5 Least Revenue/day States:</strong>
+            <ul id="bottom-5-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        // // Initialize the map
+        // var map = L.map('map').setView([37.0902, -95.7129], 5);
+
+        // // Add basemap
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     attribution: '&copy; OpenStreetMap contributors'
+        // }).addTo(map);
+
+        // // Add your data or layers to the map...
+
+        // Example: Dynamic content for top 5 and bottom 5
+        const top5States = ['FL: $111,881,636.97', 'NY: $58,827,571.91', 'CA: $57,218,251.54', 'VA: $13,855,206.20', 'NV: $9,876,333.94'];
+const bottom5States = ['MT: $409,602.87', 'AZ: $234,296.70', 'WI: $195,738.50', 'ME: $67,786.26', 'MD: $364.72'];
+
+
+
+        // Function to update the lists
+        function updateLists(top5, bottom5) {
+            const top5List = document.getElementById('top-5-list');
+            const bottom5List = document.getElementById('bottom-5-list');
+
+            top5List.innerHTML = '';
+            bottom5List.innerHTML = '';
+
+            top5.forEach(state => {
+                const li = document.createElement('li');
+                li.textContent = state;
+                top5List.appendChild(li);
+            });
+
+            bottom5.forEach(state => {
+                const li = document.createElement('li');
+                li.textContent = state;
+                bottom5List.appendChild(li);
+            });
+        }
+
+        // Update lists with the top 5 and bottom 5 states
+        updateLists(top5States, bottom5States);
+    </script>
+</body>
+    </head>
+    <body>
+        <!-- Existing map container -->
+        <div id="map" style="height: 100%;"></div>
+    
+        <!-- First Image Container -->
+        <div id="image-container-1" class="image-container">
+            <button class="close-btn">X</button>
+            <img src="RPMb6.png" alt="Image 1" style="max-width: 100%;">
+        </div>
+    
+        <!-- Second Image Container -->
+        <div id="image-container-2" class="image-container">
+            <button class="close-btn">X</button>
+            <img src="Unknown-4.png" alt="Image 2" style="max-width: 100%;">
+        </div>
+    
+        <!-- Third Image Container (Now on the left) -->
+        <div id="image-container-3" class="image-container">
+            <button class="close-btn">X</button>
+            <img src="ASMall.png" alt="Image 3" style="max-width: 100%;">
+        </div>
+    
+        <!-- Button to show all images -->
+        <div id="show-images-btn">Show Revenue and Cost Graphs</div>
+    
+        <script>
+            // Show all image containers when the show button is clicked
+            document.getElementById('show-images-btn').addEventListener('click', function() {
+                document.getElementById('image-container-1').style.display = 'block';
+                document.getElementById('image-container-2').style.display = 'block';
+                document.getElementById('image-container-3').style.display = 'block';
+                document.getElementById('show-images-btn').style.display = 'none'; // Hide the "Show Images" button
+            });
+    
+            // Hide all image containers when any close button is clicked
+            var closeButtons = document.querySelectorAll('.close-btn');
+            closeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    document.getElementById('image-container-1').style.display = 'none';
+                    document.getElementById('image-container-2').style.display = 'none';
+                    document.getElementById('image-container-3').style.display = 'none';
+    
+                    // Show the "Show Images" button again
+                    document.getElementById('show-images-btn').style.display = 'block';
+                });
+            });
+        </script>
+    </body> 
 <head>
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
