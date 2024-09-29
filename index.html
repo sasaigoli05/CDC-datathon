@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Map Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        /* Specific map height settings */
+        .tabcontent iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<h2>FlySight</h2>
+
+<!-- Tab buttons -->
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'MainPage')">Main Page</button>
+  <button class="tablinks" onclick="openTab(event, 'HeatMap')">Heat Map</button>
+  <button class="tablinks" onclick="openTab(event, 'American')">American Airlines</button>
+  <button class="tablinks" onclick="openTab(event, 'Delta')">Delta</button>
+  <button class="tablinks" onclick="openTab(event, 'Frontier')">Frontier</button>
+  <button class="tablinks" onclick="openTab(event, 'JetBlue')">JetBlue</button>
+  <button class="tablinks" onclick="openTab(event, 'Southwest')">Southwest</button>
+  <button class="tablinks" onclick="openTab(event, 'Spirit')">Spirit</button>
+  <button class="tablinks" onclick="openTab(event, 'United')">United</button>
+  <button class="tablinks" onclick="openTab(event, 'Profits')">Profits</button>
+  <button class="tablinks" onclick="openTab(event, 'Revenue')">Revenue by Quarter</button>
+</div>
+
+<!-- Tab content -->
+<div id="MainPage" class="tabcontent">
+  <iframe src="us_airports_map_with_search_and_hotels.html"></iframe>
+</div>
+
+<div id="HeatMap" class="tabcontent">
+  <iframe src="us_airports_heatmap_revenue_with_slider.html"></iframe>
+</div>
+
+<div id="American" class="tabcontent">
+  <iframe src="aa_map.html"></iframe>
+</div>
+
+<div id="Delta" class="tabcontent">
+  <iframe src="dl_map.html"></iframe>
+</div>
+
+<div id="Frontier" class="tabcontent">
+  <iframe src="f9_map.html"></iframe>
+</div>
+
+<div id="JetBlue" class="tabcontent">
+  <iframe src="b6_map.html"></iframe>
+</div>
+
+<div id="Southwest" class="tabcontent">
+  <iframe src="wn_map.html"></iframe>
+</div>
+
+<div id="Spirit" class="tabcontent">
+  <iframe src="nk_map.html"></iframe>
+</div>
+
+<div id="United" class="tabcontent">
+  <iframe src="ua_map.html"></iframe>
+</div>
+
+<!-- Profits Visualization tab -->
+<div id="Profits" class="tabcontent">
+  <div class="visualization-content">
+      <h3>Profits</h3>
+      <p>Varied visualizations</p>
+      
+      <!-- Visualization 1 -->
+      <img src="profitsss.png" alt="Visualization 1" style="max-width: 100%; height: auto;">
+      <p>Analysis of profits from Bloomberg Projections</p>
+      
+      <!-- Add more visualizations as needed -->
+  </div>
+</div>
+
+<!-- Revenue by Quarter tab -->
+<div id="Revenue" class="tabcontent">
+  <iframe src="revenue_by_quarter.html"></iframe>
+</div>
+
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Open the first tab by default
+document.getElementsByClassName("tablinks")[0].click();
+</script>
+
+</body>
+</html>
