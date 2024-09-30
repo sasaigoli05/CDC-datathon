@@ -9,4 +9,4 @@ pip install numpy matplotlib scikit-learn pandas torch tensorflow
 git clone https://github.com/sasaigoli05/CDC-datathon.git
 ```
 
-Suhan-branch has main html application and dependencies. 
+Try it out here: https://sasaigoli05.github.io/CDC-datathon/
