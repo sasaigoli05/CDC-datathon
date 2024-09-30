@@ -8,5 +8,5 @@ conda create -n CDC-datathon python==3.10
 pip install numpy matplotlib scikit-learn pandas
 git clone https://github.com/sasaigoli05/CDC-datathon.git
 ```
-
+## Demo
 Try it out here: https://sasaigoli05.github.io/CDC-datathon/
