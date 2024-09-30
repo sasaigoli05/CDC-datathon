@@ -1,6 +1,9 @@
 # Flysight - Optimizing Airline Profits
 CDC Datathon entry - Business Category
 
+Flysight is an interactive web application that integrates multiple datasources like flight data and Bloomberg projections to derive insights into growing profitability of airlines. Flysight utilizes machine learning, data visualization, and geospatial analytics.
+
+
 ## Development Environment Setup
 ```
 cd Desktop
